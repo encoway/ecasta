@@ -43,17 +43,32 @@ To build the application from the source code just run mvn package and it will c
         |__run.bat   
  
 ## How-To:
-You have already implemented the pages and steps for running cucumber tests with selenium. You have to build a jar containing all pages and steps but first at all you have to make some changes to get the URL which has been passed in ecasta. 
+To build the application you have to build it with maven **mvn package** or **mvn install**.
 
-To get the URL (protocol://host:port/context) there are four system properties which you have to read:
+To run your cucumber tests you have to add some implementations. But First at all you need a project with all pages and steps for selenium where you have to add the impelementation to get the URL (protocol://host:port/context) form ecasta. 
+Therefor you have to read some properties to get it:
 
 * **application.local.protocol** to get the protocol
 * **application.local.host** to get the host
 * **application.local.port** to get the port
 * **application.local.context** to get the context
 
+#### Example:
+```java
+private WebDriver driver = WebDriverHolder.getDriver();
+
+    @Override
+    protected void load() {
+        String url = System.getProperty("application.local.protocol", "http") + "://" 
+                + System.getProperty("application.local.host") + ":"
+                + System.getProperty("application.local.port") + "/"
+                + System.getProperty("application.local.context", "");
+        driver.get(url);
+    }
+```
+
 Secondly put the jar with the pages and steps into **_custom_jar_** folder and start ecasta. 
 
 Finally add a new testsystem and load the feature files.
 
-Now you are ready to run a test.
+Now you are ready to run a test :) .
