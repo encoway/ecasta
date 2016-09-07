@@ -20,7 +20,7 @@ To run ecasta there is nothing to install just download the zip file and unzip i
 
 ## Build
 
-To build the application from the source code just run mvn package and it will create a tow jars (with and without dependencies) and a zip bundle see [Zip skeleton](#Zip skeleton).
+To build the application from the source code just run **mvn package** and it will create a two jars (without and with dependencies) and a zip bundle see [Zip skeleton](#Zip skeleton).
 
 ### Zip skeleton
     
