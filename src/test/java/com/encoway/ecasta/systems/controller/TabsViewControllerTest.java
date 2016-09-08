@@ -6,7 +6,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.encoway.ecasta.JavaFXThreadingRule;
 import com.encoway.ecasta.features.Feature;
 import com.encoway.ecasta.systems.Testsystem;
 import com.encoway.ecasta.systems.Url;
@@ -23,7 +22,6 @@ import com.google.common.eventbus.EventBus;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import org.junit.Ignore;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -33,9 +31,6 @@ import org.powermock.api.mockito.PowerMockito;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TabsViewControllerTest {
-
-    @Rule
-    public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
 
     @Mock
     private Map<UUID, TabContentViewController> children;
