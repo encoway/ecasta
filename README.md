@@ -1,5 +1,7 @@
 # ecasta
 
+[![Build Status](https://travis-ci.org/encoway/ecasta.svg?branch=master)](https://travis-ci.org/encoway/ecasta)
+
 Documentation
 -------------
 * [Motivation](#Motivation)
