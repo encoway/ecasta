@@ -4,9 +4,7 @@
 	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
 	<id>bundle</id>
 	<formats>
-		<format>tar.gz</format>
 		<format>zip</format>
-		<format>tar</format>
 	</formats>
 	<includeBaseDirectory>false</includeBaseDirectory>
 	<fileSets>
@@ -19,6 +17,14 @@
 			<directory>lib</directory>
 			<outputDirectory>application/lib</outputDirectory>
 		</fileSet>
+        <fileSet>
+            <directory>lib</directory>
+            <outputDirectory>application/lib/custom-jar</outputDirectory>
+			<excludes>
+				<exclude>**/*</exclude>
+			</excludes>
+			<filtered>false</filtered>
+        </fileSet>
 		<fileSet>
 			<directory>${JAVA_HOME}/JRE</directory>
 			<outputDirectory>java</outputDirectory>
