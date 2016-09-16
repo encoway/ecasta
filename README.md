@@ -8,6 +8,7 @@ Documentation
 * [Requirments](#Requirments)
 * [Build](#Build)
 * [How-To](#How-To)
+* [License](#License)
 
 ## Motivation
 ecasta - encoway cucumber and selenium test assistant - is a tool that makes running cucumber tests easier. 
@@ -32,7 +33,7 @@ To build the application from the source code just run **mvn package** and it wi
         |       |
         |       |__lib
         |       |   |
-        |       |   |__custom_jar
+        |       |   |__custom-jar
         |       |   |
         |       |   |__testsystems
         |       |   
@@ -69,8 +70,11 @@ private WebDriver driver = WebDriverHolder.getDriver();
     }
 ```
 
-Secondly put the jar with the pages and steps into **_custom_jar_** folder and start ecasta. 
+Secondly put the jar with the pages and steps into **_custom-jar_** folder and start ecasta. 
 
 Finally add a new testsystem and load the feature files.
 
 Now you are ready to run a test :) .
+
+## License
+ecasta is licensed under MIT License 
