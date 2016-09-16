@@ -1,5 +1,7 @@
 package com.encoway.ecasta.commons.controller;
 
+import com.encoway.ecasta.commons.utils.DialogConstants;
+import com.encoway.ecasta.commons.utils.LanguageHandler;
 import com.encoway.ecasta.commons.utils.StageFactory;
 import com.encoway.ecasta.features.events.TestfinishedEvent;
 
@@ -9,6 +11,8 @@ import javax.annotation.PostConstruct;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +35,9 @@ public class MainViewController extends AbstractController {
     @Autowired
     private EventBus eventBus;
 
+    @Autowired
+    private LanguageHandler languageHandler;
+
     @PostConstruct
     public void init() {
         eventBus.register(this);
@@ -44,10 +51,22 @@ public class MainViewController extends AbstractController {
      */
     @Subscribe
     public void handleTestFinishedEvent(TestfinishedEvent event) throws MalformedURLException {
-        Stage stage = stageFactory.createStage("Testergebnis");
-        stage.show();
-        LOGGER.info("View with results created");
+        if (event.isTestSucceed()) {
+            Stage stage = stageFactory.createStage(languageHandler.getMessage(DialogConstants.TEST_RESULTS));
+            stage.show();
+            LOGGER.info("View with results created");
+        } else {
+            showWarning();
+        }
+    }
 
+    private void showWarning() {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle(languageHandler.getMessage(DialogConstants.TEST_FAILED));
+        alert.setHeaderText(languageHandler.getMessage(DialogConstants.TEST_FAILED_HEADER));
+        alert.setContentText(languageHandler.getMessage(DialogConstants.TEST_FAILED_CONTENT));
+
+        alert.showAndWait();
     }
 
 }

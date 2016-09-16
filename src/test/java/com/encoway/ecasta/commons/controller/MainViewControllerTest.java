@@ -4,6 +4,7 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.encoway.ecasta.commons.utils.LanguageHandler;
 import com.encoway.ecasta.commons.utils.StageFactory;
 import com.encoway.ecasta.features.events.TestfinishedEvent;
 
@@ -27,6 +28,9 @@ public class MainViewControllerTest {
 
     @Mock
     private StageFactory stageFactory;
+    @Mock
+    private LanguageHandler languageHandler;
+
     @InjectMocks
     private MainViewController classUnderTest;
 
@@ -43,8 +47,9 @@ public class MainViewControllerTest {
     @Test
     public void testHandleTestFinishedEvent() throws Exception {
         Stage stage = PowerMockito.mock(Stage.class);
-        TestfinishedEvent event = new TestfinishedEvent();
+        TestfinishedEvent event = new TestfinishedEvent(true);
         when(stageFactory.createStage(anyString())).thenReturn(stage);
+        when(languageHandler.getMessage(anyString())).thenReturn("test");
         classUnderTest.handleTestFinishedEvent(event);
         verify(stage).show();
 

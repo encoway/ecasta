@@ -7,4 +7,14 @@ package com.encoway.ecasta.features.events;
  */
 public class TestfinishedEvent {
 
+    private final boolean testSuccess;
+
+    public TestfinishedEvent(boolean testSuccess) {
+        this.testSuccess = testSuccess;
+    }
+
+    public boolean isTestSucceed() {
+        return testSuccess;
+    }
+
 }

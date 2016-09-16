@@ -77,8 +77,8 @@ public class TestRunner {
     private void execute() {
         Class<?> testClass = ExternalRunUITests.class;
         Result result = RunnerWrapper.getInstance().apply(testClass);
-        LOGGER.info("TESTRESULT", result.wasSuccessful());
-        eventBus.post(new TestfinishedEvent());
+        LOGGER.info("TESTRESULT was successful? => " + result.wasSuccessful());
+        eventBus.post(new TestfinishedEvent(result.wasSuccessful()));
     }
 
     private void setSystemProperties(Url url) {
