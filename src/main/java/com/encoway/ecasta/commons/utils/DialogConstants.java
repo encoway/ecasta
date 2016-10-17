@@ -23,4 +23,7 @@ public class DialogConstants {
     public static final String TEST_FAILED = "test.failed";
     public static final String TEST_FAILED_HEADER = "test.failed.header";
     public static final String TEST_FAILED_CONTENT = "test.failed.content";
+    public static final String NO_TESTSYSTEM_FOUND = "no.testsystems.found";
+    public static final String NO_TESTSYSTEM_FOUND_HEADER = "no.testsystems.found.header";
+    public static final String NO_TESTSYSTEM_FOUND_CONTENT = "no.testsystems.found.content";
 }

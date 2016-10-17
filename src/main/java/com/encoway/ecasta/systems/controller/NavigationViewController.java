@@ -68,10 +68,14 @@ public class NavigationViewController extends AbstractController {
      */
     @Subscribe
     public void handleInitializationEvent(InitializationEvent event) {
-        tsHandler.getTestsystems().forEach(
-                element -> listView.getItems().add(element));
-        eventBus.post(new ShowSelectedTestsystemEvent(tsHandler.getTestsystems().get(0).getId()));
-        LOGGER.info("initialization finished");
+        if (!tsHandler.getTestsystems().isEmpty()) {
+            tsHandler.getTestsystems().forEach(
+                    element -> listView.getItems().add(element));
+            eventBus.post(new ShowSelectedTestsystemEvent(tsHandler.getTestsystems().get(0).getId()));
+            LOGGER.info("initialization finished");
+        } else {
+            eventBus.post(new ShowWizardDialogEvent(true));
+        }
     }
 
     /**
@@ -79,7 +83,7 @@ public class NavigationViewController extends AbstractController {
      */
     @FXML
     public void addTestsystemButtonClicked() {
-        eventBus.post(new ShowWizardDialogEvent());
+        eventBus.post(new ShowWizardDialogEvent(false));
     }
 
     /**

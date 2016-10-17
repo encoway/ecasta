@@ -7,4 +7,13 @@ package com.encoway.ecasta.commons.events;
  */
 public class ShowWizardDialogEvent {
 
+    private final boolean firstInit;
+
+    public ShowWizardDialogEvent(boolean firstInit) {
+        this.firstInit = firstInit;
+    }
+
+    public boolean isFirstInit() {
+        return firstInit;
+    }
 }

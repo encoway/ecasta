@@ -2,6 +2,8 @@ package com.encoway.ecasta.systems.controller;
 
 import com.encoway.ecasta.commons.events.ShowWizardDialogEvent;
 import com.encoway.ecasta.commons.events.WizardFinishedEvent;
+import com.encoway.ecasta.commons.utils.DialogFactory;
+import com.encoway.ecasta.commons.utils.DialogType;
 import com.encoway.ecasta.systems.Testsystem;
 import com.encoway.ecasta.systems.dialogs.WizzardDialogView;
 import com.encoway.ecasta.systems.events.EditTestsystemEvent;
@@ -40,6 +42,9 @@ public class WizzardController {
     private WizzardDialogView wizard;
 
     @Autowired
+    private DialogFactory dialogFactory;
+
+    @Autowired
     private Stage stage;
 
     /**
@@ -59,6 +64,9 @@ public class WizzardController {
      */
     @Subscribe
     public void handleShowWizard(ShowWizardDialogEvent event) throws IOException {
+        if (event.isFirstInit()) {
+            dialogFactory.createAlertDialog(DialogType.NO_TESTSYSTEM);
+        }
         wizard.initDialog(stage, null);
         wizard.show();
     }

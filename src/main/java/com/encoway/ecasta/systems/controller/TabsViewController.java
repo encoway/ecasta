@@ -16,6 +16,7 @@ import javax.annotation.PostConstruct;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import org.slf4j.Logger;
@@ -52,6 +53,11 @@ public class TabsViewController extends AbstractController {
     public void init() {
         eventBus.register(this);
         children = new HashMap<>();
+    }
+
+    @Override
+    public void setView(Node view) {
+        this.tabPane = (TabPane) view;
     }
 
     /**
@@ -116,7 +122,7 @@ public class TabsViewController extends AbstractController {
      */
     @Subscribe
     public void handleTestsystemDeletedEvent(TestsystemDeletedEvent event) {
-        Tab todelete = tabPane.getTabs().stream().filter(tab -> tab.getId().equals(event.getId())).findAny().get();
+        Tab todelete = tabPane.getTabs().stream().filter(tab -> tab.getId().equals(event.getId().toString())).findAny().get();
         if (todelete != null) {
             tabPane.getTabs().remove(todelete);
         }

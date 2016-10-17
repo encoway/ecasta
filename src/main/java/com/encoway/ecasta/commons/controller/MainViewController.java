@@ -1,6 +1,8 @@
 package com.encoway.ecasta.commons.controller;
 
 import com.encoway.ecasta.commons.utils.DialogConstants;
+import com.encoway.ecasta.commons.utils.DialogFactory;
+import com.encoway.ecasta.commons.utils.DialogType;
 import com.encoway.ecasta.commons.utils.LanguageHandler;
 import com.encoway.ecasta.commons.utils.StageFactory;
 import com.encoway.ecasta.features.events.TestfinishedEvent;
@@ -11,8 +13,6 @@ import javax.annotation.PostConstruct;
 
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +38,9 @@ public class MainViewController extends AbstractController {
     @Autowired
     private LanguageHandler languageHandler;
 
+    @Autowired
+    private DialogFactory dialogFactory;
+
     @PostConstruct
     public void init() {
         eventBus.register(this);
@@ -56,17 +59,8 @@ public class MainViewController extends AbstractController {
             stage.show();
             LOGGER.info("View with results created");
         } else {
-            showWarning();
+            dialogFactory.createAlertDialog(DialogType.TEST_FAILED);
         }
-    }
-
-    private void showWarning() {
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle(languageHandler.getMessage(DialogConstants.TEST_FAILED));
-        alert.setHeaderText(languageHandler.getMessage(DialogConstants.TEST_FAILED_HEADER));
-        alert.setContentText(languageHandler.getMessage(DialogConstants.TEST_FAILED_CONTENT));
-
-        alert.showAndWait();
     }
 
 }
