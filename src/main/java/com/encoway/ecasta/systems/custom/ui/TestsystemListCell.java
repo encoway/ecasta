@@ -46,7 +46,9 @@ public class TestsystemListCell extends ListCell<Testsystem> {
             @Override
             public void handle(MouseEvent event) {
                 if (event.getClickCount() == 2) {
-                    listener.doubleClicked(lastItem.getId());
+                    if (lastItem != null) {
+                        listener.doubleClicked(lastItem.getId());
+                    }
                 }
             }
         });

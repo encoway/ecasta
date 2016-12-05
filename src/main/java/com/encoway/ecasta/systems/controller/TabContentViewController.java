@@ -132,7 +132,7 @@ public class TabContentViewController extends AbstractController {
      */
     public void listClicked(Feature selectedItem) {
         testsystem.getFeatures().forEach(element -> {
-            if (element.getId().equals(selectedItem.getId())) {
+            if (selectedItem != null && element.getId().equals(selectedItem.getId())) {
                 featureDetailView.setText(element.getContent());
             }
         });
